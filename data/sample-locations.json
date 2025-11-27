@@ -1,0 +1,218 @@
+[
+  {
+    "name": "Monas (Monumen Nasional)",
+    "description": "Monumen Nasional atau yang populer disingkat dengan Monas adalah monumen peringatan setinggi 132 meter yang didirikan untuk mengenang perlawanan dan perjuangan rakyat Indonesia untuk merebut kemerdekaan dari pemerintahan kolonial Hindia Belanda.",
+    "category": "tourist_spot",
+    "coordinates": {
+      "lat": -6.1753924,
+      "lng": 106.8271528
+    },
+    "address": "Jl. Silang Monas, Gambir, Jakarta Pusat, DKI Jakarta 10110",
+    "rating": 4.6,
+    "imageUrl": "https://images.unsplash.com/photo-1555899434-94d1eb5a9f97?w=600"
+  },
+  {
+    "name": "Kota Tua Jakarta",
+    "description": "Kota Tua Jakarta adalah sebuah kawasan kecil di Jakarta, Indonesia. Kawasan khusus ini memiliki luas 1,3 kilometer persegi melintasi Jakarta Utara dan Jakarta Barat. Tempat ini juga dikenal dengan sebutan Batavia Lama.",
+    "category": "tourist_spot",
+    "coordinates": {
+      "lat": -6.1349088,
+      "lng": 106.8137793
+    },
+    "address": "Jl. Taman Fatahillah, Pinangsia, Tamansari, Jakarta Barat",
+    "rating": 4.5,
+    "imageUrl": "https://images.unsplash.com/photo-1598953823106-0a49f72b5c0e?w=600"
+  },
+  {
+    "name": "Taman Mini Indonesia Indah (TMII)",
+    "description": "Taman Mini Indonesia Indah adalah suatu kawasan taman wisata bertema budaya Indonesia di Jakarta Timur. Area seluas kurang lebih 150 hektare atau 1,5 kilometer persegi ini terletak pada koordinat.",
+    "category": "tourist_spot",
+    "coordinates": {
+      "lat": -6.3024694,
+      "lng": 106.8950544
+    },
+    "address": "Jl. Taman Mini Indonesia Indah, Ceger, Cipayung, Jakarta Timur",
+    "rating": 4.4,
+    "imageUrl": "https://images.unsplash.com/photo-1589308078059-be1415eab4c3?w=600"
+  },
+  {
+    "name": "Grand Indonesia",
+    "description": "Grand Indonesia adalah pusat perbelanjaan dan kompleks perkantoran yang terletak di Jalan M.H. Thamrin, Jakarta Pusat. Kompleks seluas 640.000 m² ini merupakan mixed-use development terbesar di Indonesia.",
+    "category": "shop",
+    "coordinates": {
+      "lat": -6.1950932,
+      "lng": 106.8229583
+    },
+    "address": "Jl. M.H. Thamrin No.1, Menteng, Jakarta Pusat",
+    "rating": 4.5,
+    "imageUrl": "https://images.unsplash.com/photo-1519567241046-7f570eee3ce6?w=600"
+  },
+  {
+    "name": "Plaza Indonesia",
+    "description": "Plaza Indonesia adalah pusat perbelanjaan mewah yang terletak di bundaran Hotel Indonesia, Jakarta Pusat. Mall ini dikenal dengan koleksi brand internasional kelas atas.",
+    "category": "shop",
+    "coordinates": {
+      "lat": -6.1930186,
+      "lng": 106.8227139
+    },
+    "address": "Jl. M.H. Thamrin Kav. 28-30, Gondangdia, Menteng, Jakarta Pusat",
+    "rating": 4.6,
+    "imageUrl": "https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?w=600"
+  },
+  {
+    "name": "Pacific Place Jakarta",
+    "description": "Pacific Place Jakarta adalah pusat perbelanjaan premium di kawasan SCBD Jakarta Selatan yang menawarkan berbagai brand internasional dan fasilitas lengkap.",
+    "category": "shop",
+    "coordinates": {
+      "lat": -6.2252941,
+      "lng": 106.8093689
+    },
+    "address": "Jl. Jend. Sudirman Kav. 52-53, SCBD, Jakarta Selatan",
+    "rating": 4.7,
+    "imageUrl": "https://images.unsplash.com/photo-1528698827591-e19ccd7bc23d?w=600"
+  },
+  {
+    "name": "Hotel Indonesia Kempinski",
+    "description": "Hotel mewah bintang 5 di pusat Jakarta dengan fasilitas lengkap dan pelayanan berkelas dunia. Terletak strategis di bundaran HI dengan akses mudah ke berbagai destinasi.",
+    "category": "hotel",
+    "coordinates": {
+      "lat": -6.1951206,
+      "lng": 106.8227776
+    },
+    "address": "Jl. M.H. Thamrin No.1, Menteng, Jakarta Pusat",
+    "rating": 4.7,
+    "imageUrl": "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600"
+  },
+  {
+    "name": "The Ritz-Carlton Jakarta, Pacific Place",
+    "description": "Hotel bintang 5 yang menawarkan kemewahan dan kenyamanan dengan pemandangan kota Jakarta yang spektakuler. Berlokasi di kompleks Pacific Place.",
+    "category": "hotel",
+    "coordinates": {
+      "lat": -6.2256344,
+      "lng": 106.8095861
+    },
+    "address": "Pacific Place, Jl. Jend. Sudirman Kav. 52-53, Jakarta Selatan",
+    "rating": 4.8,
+    "imageUrl": "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=600"
+  },
+  {
+    "name": "The Dharmawangsa Jakarta",
+    "description": "Hotel boutique mewah yang menawarkan pengalaman menginap yang eksklusif dengan desain Jawa klasik yang elegan dan layanan personal.",
+    "category": "hotel",
+    "coordinates": {
+      "lat": -6.2568889,
+      "lng": 106.7970833
+    },
+    "address": "Jl. Brawijaya Raya No.26, Kebayoran Baru, Jakarta Selatan",
+    "rating": 4.7,
+    "imageUrl": "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=600"
+  },
+  {
+    "name": "Café Batavia",
+    "description": "Restoran bergaya kolonial di Kota Tua Jakarta yang menyajikan berbagai hidangan western dan Indonesia dalam suasana klasik yang memukau.",
+    "category": "restaurant",
+    "coordinates": {
+      "lat": -6.1349088,
+      "lng": 106.8137793
+    },
+    "address": "Jl. Pintu Besar Utara No.14, Kota Tua, Jakarta Barat",
+    "rating": 4.4,
+    "imageUrl": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600"
+  },
+  {
+    "name": "Plataran Menteng",
+    "description": "Restoran fine dining yang menyajikan masakan Indonesia kontemporer dalam suasana rumah kolonial yang menawan di kawasan Menteng.",
+    "category": "restaurant",
+    "coordinates": {
+      "lat": -6.1915406,
+      "lng": 106.8338589
+    },
+    "address": "Jl. HOS Cokroaminoto No.78, Menteng, Jakarta Pusat",
+    "rating": 4.6,
+    "imageUrl": "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600"
+  },
+  {
+    "name": "Lara Djonggrang",
+    "description": "Restoran yang menyajikan hidangan Indonesia tradisional dalam setting interior yang unik terinspirasi dari legenda Lara Jonggrang dan kebudayaan Jawa.",
+    "category": "restaurant",
+    "coordinates": {
+      "lat": -6.1922944,
+      "lng": 106.8296417
+    },
+    "address": "Jl. Teuku Cik Ditiro No.4, Menteng, Jakarta Pusat",
+    "rating": 4.5,
+    "imageUrl": "https://images.unsplash.com/photo-1559339352-11d035aa65de?w=600"
+  },
+  {
+    "name": "Universitas Indonesia (UI)",
+    "description": "Universitas Indonesia adalah perguruan tinggi negeri di Indonesia yang kampus utamanya berada di Depok, Jawa Barat. UI adalah kampus modern, komprehensif, terbuka, multi budaya, dan humanis.",
+    "category": "school",
+    "coordinates": {
+      "lat": -6.3612508,
+      "lng": 106.8241982
+    },
+    "address": "Kampus UI, Depok, Jawa Barat 16424",
+    "rating": 4.8,
+    "imageUrl": "https://images.unsplash.com/photo-1562774053-701939374585?w=600"
+  },
+  {
+    "name": "Universitas Negeri Jakarta (UNJ)",
+    "description": "Universitas Negeri Jakarta adalah perguruan tinggi negeri di Jakarta, Indonesia yang dahulu bernama Institut Keguruan dan Ilmu Pendidikan Jakarta.",
+    "category": "school",
+    "coordinates": {
+      "lat": -6.1943965,
+      "lng": 106.8717472
+    },
+    "address": "Jl. Rawamangun Muka, Rawamangun, Jakarta Timur",
+    "rating": 4.5,
+    "imageUrl": "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=600"
+  },
+  {
+    "name": "SMA Negeri 8 Jakarta",
+    "description": "SMA Negeri 8 Jakarta adalah salah satu sekolah menengah atas negeri favorit di Jakarta yang terletak di Bukit Duri, Tebet, Jakarta Selatan.",
+    "category": "school",
+    "coordinates": {
+      "lat": -6.2349306,
+      "lng": 106.8602806
+    },
+    "address": "Jl. Taman Bukit Duri No.1, Tebet, Jakarta Selatan",
+    "rating": 4.7,
+    "imageUrl": "https://images.unsplash.com/photo-1509062522246-3755977927d7?w=600"
+  },
+  {
+    "name": "RSUPN Dr. Cipto Mangunkusumo",
+    "description": "Rumah sakit pendidikan terbesar di Indonesia yang menjadi rumah sakit rujukan nasional dengan fasilitas lengkap dan tenaga medis profesional.",
+    "category": "hospital",
+    "coordinates": {
+      "lat": -6.1844294,
+      "lng": 106.8313446
+    },
+    "address": "Jl. Diponegoro No.71, Kenari, Senen, Jakarta Pusat",
+    "rating": 4.3,
+    "imageUrl": "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=600"
+  },
+  {
+    "name": "RS Pondok Indah",
+    "description": "Rumah sakit swasta terkemuka di Jakarta Selatan yang menyediakan layanan kesehatan berkualitas tinggi dengan fasilitas modern dan lengkap.",
+    "category": "hospital",
+    "coordinates": {
+      "lat": -6.2662778,
+      "lng": 106.7839722
+    },
+    "address": "Jl. Metro Duta Kav. UE, Pondok Indah, Jakarta Selatan",
+    "rating": 4.6,
+    "imageUrl": "https://images.unsplash.com/photo-1587351021759-3e566b6af7cc?w=600"
+  },
+  {
+    "name": "Siloam Hospitals Lippo Village",
+    "description": "Rumah sakit modern dengan standar internasional yang menyediakan berbagai layanan kesehatan komprehensif dan teknologi medis terkini.",
+    "category": "hospital",
+    "coordinates": {
+      "lat": -6.2525306,
+      "lng": 106.6177111
+    },
+    "address": "Jl. Boulevard Jend. Sudirman No.36, Lippo Village, Tangerang",
+    "rating": 4.5,
+    "imageUrl": "https://images.unsplash.com/photo-1516549655169-df83a0774514?w=600"
+  }
+]

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="description" content="Aplikasi Sistem Informasi Geografis - Demo Mode">
+    <meta name="theme-color" content="#2563eb">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>GIS LeafletJS - Demo Mode</title>
+    
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-map-marked-alt"></i>
+                <h1>GIS Explorer (Demo Mode)</h1>
+            </div>
+            <nav class="nav">
+                <button class="btn btn-primary" id="addLocationBtn">
+                    <i class="fas fa-plus"></i> Tambah Lokasi
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Banner Info -->
+    <div style="background: #fef3c7; color: #92400e; padding: 0.75rem 2rem; text-align: center; font-size: 0.9rem;">
+        <i class="fas fa-info-circle"></i> <strong>Mode Demo:</strong> Menggunakan data lokal (LocalStorage). Untuk mode penuh dengan backend, jalankan server Node.js.
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-container">
+        <!-- Sidebar Toggle Button (Mobile) -->
+        <button class="sidebar-toggle" id="sidebarToggle">
+            <i class="fas fa-bars"></i>
+        </button>
+        
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <h2><i class="fas fa-filter"></i> Filter & Pencarian</h2>
+            </div>
+            
+            <!-- Search Box -->
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Cari lokasi...">
+                <button id="searchBtn"><i class="fas fa-search"></i></button>
+            </div>
+            
+            <!-- Category Filter -->
+            <div class="filter-section">
+                <h3>Kategori</h3>
+                <div class="category-buttons">
+                    <button class="category-btn active" data-category="all">
+                        <i class="fas fa-globe"></i> Semua
+                    </button>
+                    <button class="category-btn" data-category="restaurant">
+                        <i class="fas fa-utensils"></i> Restoran
+                    </button>
+                    <button class="category-btn" data-category="hotel">
+                        <i class="fas fa-hotel"></i> Hotel
+                    </button>
+                    <button class="category-btn" data-category="tourist_spot">
+                        <i class="fas fa-camera"></i> Wisata
+                    </button>
+                    <button class="category-btn" data-category="school">
+                        <i class="fas fa-school"></i> Sekolah
+                    </button>
+                    <button class="category-btn" data-category="hospital">
+                        <i class="fas fa-hospital"></i> Rumah Sakit
+                    </button>
+                    <button class="category-btn" data-category="shop">
+                        <i class="fas fa-shopping-cart"></i> Toko
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Location List -->
+            <div class="location-list">
+                <h3>Daftar Lokasi (<span id="locationCount">0</span>)</h3>
+                <div id="locationListContainer">
+                    <p class="loading">Loading...</p>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Map Container -->
+        <main class="map-section">
+            <div id="map"></div>
+            <div class="map-controls">
+                <button class="control-btn" id="locateBtn" title="Lokasi Saya">
+                    <i class="fas fa-location-arrow"></i>
+                </button>
+                <button class="control-btn" id="refreshBtn" title="Refresh Data">
+                    <i class="fas fa-sync-alt"></i>
+                </button>
+            </div>
+        </main>
+    </div>
+
+    <!-- Add/Edit Location Modal -->
+    <div id="locationModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">
+                    <i class="fas fa-map-pin"></i> Tambah Lokasi Baru
+                </h2>
+                <button class="close-btn">&times;</button>
+            </div>
+            <form id="locationForm">
+                <input type="hidden" id="locationId">
+                
+                <div class="form-group">
+                    <label for="locationName">
+                        <i class="fas fa-tag"></i> Nama Lokasi *
+                    </label>
+                    <input type="text" id="locationName" required placeholder="Contoh: Restoran Sederhana">
+                </div>
+                
+                <div class="form-group">
+                    <label for="locationCategory">
+                        <i class="fas fa-list"></i> Kategori *
+                    </label>
+                    <select id="locationCategory" required>
+                        <option value="restaurant">Restoran</option>
+                        <option value="hotel">Hotel</option>
+                        <option value="tourist_spot">Tempat Wisata</option>
+                        <option value="school">Sekolah</option>
+                        <option value="hospital">Rumah Sakit</option>
+                        <option value="shop">Toko</option>
+                        <option value="other">Lainnya</option>
+                    </select>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="locationLat">
+                            <i class="fas fa-map-marker-alt"></i> Latitude *
+                        </label>
+                        <input type="number" id="locationLat" step="any" required placeholder="-6.200000">
+                    </div>
+                    <div class="form-group">
+                        <label for="locationLng">
+                            <i class="fas fa-map-marker-alt"></i> Longitude *
+                        </label>
+                        <input type="number" id="locationLng" step="any" required placeholder="106.816666">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <button type="button" class="btn btn-secondary" id="pickFromMapBtn">
+                        <i class="fas fa-crosshairs"></i> Pilih dari Peta
+                    </button>
+                    <small style="display: block; margin-top: 0.5rem; color: #64748b;">
+                        <i class="fas fa-info-circle"></i> Klik tombol ini, lalu klik lokasi di peta
+                    </small>
+                </div>
+                
+                <div class="form-group">
+                    <label for="locationAddress">
+                        <i class="fas fa-location-dot"></i> Alamat
+                    </label>
+                    <textarea id="locationAddress" rows="2" placeholder="Masukkan alamat lengkap"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="locationDescription">
+                        <i class="fas fa-info-circle"></i> Deskripsi
+                    </label>
+                    <textarea id="locationDescription" rows="3" placeholder="Deskripsi lokasi"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="locationRating">
+                        <i class="fas fa-star"></i> Rating (0-5)
+                    </label>
+                    <input type="number" id="locationRating" min="0" max="5" step="0.1" placeholder="4.5">
+                </div>
+                
+                <div class="form-group">
+                    <label for="locationImage">
+                        <i class="fas fa-image"></i> URL Gambar
+                    </label>
+                    <input type="url" id="locationImage" placeholder="https://example.com/image.jpg">
+                </div>
+                
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary cancel-btn">Batal</button>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save"></i> Simpan
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Location Detail Modal -->
+    <div id="detailModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-info-circle"></i> Detail Lokasi</h2>
+                <button class="close-btn">&times;</button>
+            </div>
+            <div id="detailContent">
+                <!-- Content will be injected by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    
+    <!-- Custom JS -->
+    <script src="js/config.js"></script>
+    <script src="js/app-demo.js"></script>
+</body>
+</html>
