@@ -7,7 +7,8 @@
     "start": "node server/index.js",
     "dev": "nodemon server/index.js",
     "import": "node import-data.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "deploy:pages": "git subtree split --prefix public -b gh-pages && git push -u origin gh-pages && git branch -D gh-pages"
   },
   "keywords": ["leaflet", "gis", "mongodb", "express"],
   "author": "",

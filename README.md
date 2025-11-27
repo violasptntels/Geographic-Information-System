@@ -114,64 +114,106 @@ Atau buka `public/index.html` dengan Live Server dan pastikan API_CONFIG.BASE_UR
 
 ## 🌐 Deploy ke GitHub Pages
 
-### Cara 1: Deploy Demo Version (Tanpa Backend)
+> GitHub Pages hanya dapat menjalankan file statis (HTML, CSS, JS). Backend Express + MongoDB TIDAK bisa berjalan di Pages. Anda punya 2 opsi: (1) Deploy versi Demo (LocalStorage), atau (2) Deploy frontend ke Pages dan backend ke platform lain (Railway/Render/Heroku) lalu ubah `API_CONFIG.BASE_URL`.
 
-1. **Copy demo.html sebagai index.html:**
+### Opsi 1: Deploy Versi Demo (Tanpa Backend)
+Versi ini menggunakan `public/demo.html` dan LocalStorage.
+
+1. Pastikan file `public/demo.html` ada. (Tidak perlu mengganti `index.html` jika Anda tetap ingin versi full lokal.)
+2. Jalankan perintah deploy subtree (mengirim folder `public` saja ke branch `gh-pages`):
    ```bash
-   Copy-Item public/demo.html public/index.html
+   npm run deploy:pages
+   ```
+3. Buka GitHub: Repository > Settings > Pages
+4. Source: Branch `gh-pages` (root) > Save
+5. Tunggu beberapa menit, situs akan tersedia di:
+   ```
+   https://<username>.github.io/<repository>/
    ```
 
-2. **Push ke GitHub:**
+Jika ingin memakai file `index.html` versi demo sebagai halaman utama di Pages, ubah (atau copy) konten `demo.html` menjadi `index.html` sebelum deploy.
+
+### Opsi 2: Frontend di Pages + Backend di Platform Cloud
+
+1. Deploy frontend sama seperti Opsi 1.
+2. Deploy backend ke salah satu platform:
+   - **Railway**: Import repo, set variabel `MONGODB_URI`, jalankan.
+   - **Render**: Web Service > Build: `npm install` | Start: `npm start`.
+   - **Heroku**: Push repo dan tambahkan add-on MongoDB atau gunakan Atlas.
+3. Dapatkan URL backend (misal: `https://gis-backend-xyz.up.railway.app`).
+4. Edit `public/js/config.js` ubah `API_CONFIG.BASE_URL` menjadi URL backend Anda.
+5. Deploy ulang Pages jika perlu.
+
+### Opsi 3: GitHub Actions Otomatis (Direkomendasikan)
+Tambahkan workflow untuk otomatis deploy setiap push ke `main`.
+
+1. Buat file `.github/workflows/deploy-pages.yml` dengan isi:
+   ```yaml
+   name: Deploy GitHub Pages
+   on:
+     push:
+       branches: [main]
+   permissions:
+     contents: read
+     pages: write
+     id-token: write
+   concurrency:
+     group: pages
+     cancel-in-progress: true
+   jobs:
+     deploy:
+       runs-on: ubuntu-latest
+       steps:
+         - name: Checkout
+           uses: actions/checkout@v4
+         - name: Setup Pages
+           uses: actions/configure-pages@v4
+         - name: Upload artifact (public folder)
+           uses: actions/upload-pages-artifact@v3
+           with:
+             path: public
+         - name: Deploy to GitHub Pages
+           id: deployment
+           uses: actions/deploy-pages@v4
+   ```
+2. Commit & push workflow:
    ```bash
-   git init
-   git add .
-   git commit -m "Initial commit"
-   git remote add origin https://github.com/username/repository.git
-   git push -u origin main
+   git add .github/workflows/deploy-pages.yml
+   git commit -m "Add GitHub Pages deploy workflow"
+   git push
    ```
+3. Aktifkan Pages: Settings > Pages > Source: GitHub Actions.
+4. Setiap push ke `main` akan otomatis deploy.
 
-3. **Enable GitHub Pages:**
-   - Buka Settings > Pages
-   - Source: Deploy from a branch
-   - Branch: main, folder: / (root)
-   - Save
+### Catatan Penting
+- Jangan commit file `.env` (sudah di `.gitignore`).
+- Backend harus dihosting terpisah untuk mode full.
+- CORS: Pastikan backend mengizinkan origin Pages Anda.
+- Reverse geocoding tetap berjalan karena menggunakan OpenStreetMap API publik.
 
-4. **Website akan tersedia di:**
-   ```
-   https://username.github.io/repository/
-   ```
+### Cek Setelah Deploy
+| Item | Versi Demo | Versi Full |
+|------|------------|------------|
+| CRUD Backend | ❌ | ✅ |
+| Simpan Data | LocalStorage | MongoDB |
+| Auto Alamat | ✅ | ✅ |
+| Peta & Marker | ✅ | ✅ |
+| Search & Filter | ✅ | ✅ |
 
-### Cara 2: Deploy Full Version (Frontend + Backend)
+Jika Anda melihat 404 di Pages untuk asset, pastikan semua path relatif (seperti `css/style.css`, bukan `/css/style.css`). Saat ini sudah menggunakan path relatif sehingga kompatibel.
 
-**Frontend di GitHub Pages:**
-- Ikuti langkah di atas tapi gunakan `index.html`
-- Update `API_CONFIG.BASE_URL` di `config.js` dengan URL backend Anda
+### Rollback / Perbaikan
+Jika ingin update situs:
+```bash
+# Perbarui kode, lalu:
+npm run deploy:pages
+```
+Jika branch `gh-pages` bermasalah:
+```bash
+git push origin --delete gh-pages
+npm run deploy:pages
+```
 
-**Backend di Platform Cloud:**
-
-**Opsi A: Railway**
-1. Daftar di [Railway.app](https://railway.app)
-2. New Project > Deploy from GitHub
-3. Pilih repository Anda
-4. Add MongoDB service
-5. Set environment variables
-6. Deploy
-
-**Opsi B: Render**
-1. Daftar di [Render.com](https://render.com)
-2. New > Web Service
-3. Connect repository
-4. Build Command: `npm install`
-5. Start Command: `npm start`
-6. Add environment variables
-7. Deploy
-
-**Opsi C: Heroku**
-1. Install Heroku CLI
-2. Login: `heroku login`
-3. Create app: `heroku create app-name`
-4. Add MongoDB: `heroku addons:create mongolab`
-5. Deploy: `git push heroku main`
 
 ## 📝 API Endpoints
 
