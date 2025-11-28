@@ -31,6 +31,9 @@
                 <h1>GIS Explorer</h1>
             </div>
             <nav class="nav header-actions">
+                <button class="header-icon-btn" id="listToggleBtn" title="Daftar Lokasi">
+                    <i class="fas fa-list"></i>
+                </button>
                 <button class="header-icon-btn" id="searchToggleBtn" title="Cari Lokasi">
                     <i class="fas fa-search"></i>
                 </button>
@@ -43,55 +46,20 @@
 
     <!-- Main Content -->
     <div class="main-container">
-        <!-- Sidebar Toggle Button (Mobile) -->
-        <button class="sidebar-toggle" id="sidebarToggle">
-            <i class="fas fa-bars"></i>
-        </button>
-        
         <!-- Sidebar -->
         <aside class="sidebar" id="sidebar">
             <div class="sidebar-header">
-                <h2><i class="fas fa-filter"></i> Filter & Kategori</h2>
-            </div>
-            
-            <!-- Category Filter -->
-            <div class="filter-section">
-                <h3>Kategori</h3>
-                <div class="category-buttons">
-                    <button class="category-btn active" data-category="all" title="Semua Lokasi">
-                        <i class="fas fa-globe"></i>
-                        <span>Semua</span>
-                    </button>
-                    <button class="category-btn" data-category="restaurant" title="Restoran">
-                        <i class="fas fa-utensils"></i>
-                        <span>Restoran</span>
-                    </button>
-                    <button class="category-btn" data-category="hotel" title="Hotel">
-                        <i class="fas fa-hotel"></i>
-                        <span>Hotel</span>
-                    </button>
-                    <button class="category-btn" data-category="tourist_spot" title="Wisata">
-                        <i class="fas fa-camera"></i>
-                        <span>Wisata</span>
-                    </button>
-                    <button class="category-btn" data-category="school" title="Sekolah">
-                        <i class="fas fa-school"></i>
-                        <span>Sekolah</span>
-                    </button>
-                    <button class="category-btn" data-category="hospital" title="Rumah Sakit">
-                        <i class="fas fa-hospital"></i>
-                        <span>Rumah Sakit</span>
-                    </button>
-                    <button class="category-btn" data-category="shop" title="Toko">
-                        <i class="fas fa-shopping-cart"></i>
-                        <span>Toko</span>
+                <div class="sidebar-title">
+                    <h2><i class="fas fa-map-pin"></i> Daftar Lokasi</h2>
+                    <button class="sidebar-close-btn" id="sidebarCloseBtn" title="Tutup">
+                        <i class="fas fa-times"></i>
                     </button>
                 </div>
+                <div class="location-count">Total: <span id="locationCount">0</span> Lokasi</div>
             </div>
             
             <!-- Location List -->
-            <div class="location-list">
-                <h3>Daftar Lokasi (<span id="locationCount">0</span>)</h3>
+            <div class="location-list-container">
                 <div id="locationListContainer">
                     <p class="loading">Loading...</p>
                 </div>

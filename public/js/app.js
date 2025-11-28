@@ -201,12 +201,8 @@ function displayLocations(locations) {
             // Close sidebar on mobile after clicking location
             if (window.innerWidth <= 768) {
                 const sidebar = document.getElementById('sidebar');
-                const sidebarToggle = document.getElementById('sidebarToggle');
                 if (sidebar) {
                     sidebar.classList.add('collapsed');
-                }
-                if (sidebarToggle) {
-                    sidebarToggle.querySelector('i').className = 'fas fa-bars';
                 }
             }
         };
@@ -390,29 +386,17 @@ async function saveLocation(formData) {
 
 // Initialize Event Listeners
 function initEventListeners() {
-    // Sidebar Toggle for Mobile
-    const sidebarToggle = document.getElementById('sidebarToggle');
-    const sidebar = document.getElementById('sidebar');
+    // List Toggle Button (Header)
+    document.getElementById('listToggleBtn').addEventListener('click', () => {
+        const sidebar = document.getElementById('sidebar');
+        sidebar.classList.toggle('collapsed');
+    });
     
-    if (sidebarToggle && sidebar) {
-        sidebarToggle.addEventListener('click', (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            sidebar.classList.toggle('collapsed');
-            const icon = sidebarToggle.querySelector('i');
-            if (icon) {
-                if (sidebar.classList.contains('collapsed')) {
-                    icon.className = 'fas fa-bars';
-                } else {
-                    icon.className = 'fas fa-times';
-                }
-            }
-            // Resize map after sidebar toggle
-            setTimeout(() => {
-                if (map) map.invalidateSize();
-            }, 350);
-        });
-    }
+    // Sidebar Close Button
+    document.getElementById('sidebarCloseBtn').addEventListener('click', () => {
+        const sidebar = document.getElementById('sidebar');
+        sidebar.classList.add('collapsed');
+    });
     
     // Search Toggle Button (Header)
     document.getElementById('searchToggleBtn').addEventListener('click', () => {
