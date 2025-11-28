@@ -3,7 +3,7 @@ const API_CONFIG = {
     // Untuk development (local)
     BASE_URL: typeof window !== 'undefined' && window.location.hostname === 'localhost' 
         ? 'http://localhost:3001/api'
-        : '/api',
+        : 'https://backend-gis-violasptntels.vercel.app/api', // Ganti dengan URL backend Anda
     
     ENDPOINTS: {
         LOCATIONS: '/locations',

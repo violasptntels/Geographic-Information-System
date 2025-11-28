@@ -1,6 +1,8 @@
-# 🗺️ GIS LeafletJS Application
+# 🗺️ GIS LeafletJS Application - Frontend
 
-Aplikasi Sistem Informasi Geografis (GIS) yang modern dan interaktif menggunakan LeafletJS, Node.js/Express, dan MongoDB.
+Aplikasi Frontend Sistem Informasi Geografis (GIS) yang modern dan interaktif menggunakan LeafletJS.
+
+> **Backend Repository**: https://github.com/violasptntels/Backend-Geographic-Information-System
 
 ![GIS App](https://img.shields.io/badge/GIS-LeafletJS-green)
 ![Node.js](https://img.shields.io/badge/Node.js-Express-blue)
@@ -22,229 +24,108 @@ Aplikasi Sistem Informasi Geografis (GIS) yang modern dan interaktif menggunakan
 ## 📁 Struktur Folder
 
 ```
-Tugas UTS/
+Geographic-Information-System (Frontend)/
 ├── public/                 # Frontend files
 │   ├── css/
 │   │   └── style.css      # Styling aplikasi
 │   ├── js/
 │   │   ├── config.js      # Konfigurasi API & Map
-│   │   ├── app.js         # Logic untuk mode full
-│   │   └── app-demo.js    # Logic untuk mode demo
+│   │   ├── app.js         # Logic aplikasi (mode full)
+│   │   └── app-demo.js    # Logic aplikasi (mode demo)
 │   ├── index.html         # Main page (mode full)
 │   └── demo.html          # Demo page (mode demo)
-├── server/                # Backend files
+├── package.json           # Dependencies frontend
+├── README.md              # Dokumentasi
+└── .gitignore
+
+Backend-Geographic-Information-System (Terpisah)/
+├── server/
 │   ├── models/
-│   │   └── Location.js    # MongoDB schema
+│   │   └── Location.js
 │   ├── routes/
-│   │   └── locations.js   # API routes
-│   └── index.js           # Server utama
-├── package.json           # Dependencies
-├── .env.example           # Environment variables template
-└── README.md             # Dokumentasi
+│   │   └── locations.js
+│   └── index.js
+├── import-data.js
+├── package.json
+├── .env.example
+└── README.md
 ```
 
 ## 🚀 Cara Menjalankan
 
 ### Mode Demo (Tanpa Backend)
 
-1. **Buka file HTML langsung di browser:**
+1. **Gunakan Live Server atau HTTP Server:**
    ```bash
-   # Buka demo.html dengan browser
-   # Double click pada file atau
-   # Klik kanan > Open with > Browser pilihan Anda
+   npm install
+   npm run dev
    ```
 
-2. **Atau gunakan Live Server:**
-   - Install ekstensi Live Server di VS Code
-   - Klik kanan pada `demo.html` > Open with Live Server
+2. **Atau buka langsung di browser:**
+   - Klik kanan pada `public/demo.html` > Open with Live Server
+   - Atau buka `public/demo.html` di browser
 
-**Mode demo** menggunakan LocalStorage untuk menyimpan data, jadi tidak perlu setup backend atau database.
+**Mode demo** menggunakan LocalStorage untuk menyimpan data lokal di browser.
 
-### Mode Full (Dengan Backend & MongoDB)
+### Mode Full (Dengan Backend)
 
-#### 1. Install Dependencies
-
-```bash
-npm install
-```
-
-#### 2. Setup MongoDB
-
-**Opsi A: MongoDB Local**
-- Install MongoDB Community Edition
-- Jalankan MongoDB service
-- Database akan dibuat otomatis dengan nama `gis_database`
-
-**Opsi B: MongoDB Atlas (Cloud - Gratis)**
-- Daftar di [MongoDB Atlas](https://www.mongodb.com/cloud/atlas)
-- Buat cluster gratis
-- Dapatkan connection string
-
-#### 3. Setup Environment Variables
-
-```bash
-# Copy .env.example ke .env
-cp .env.example .env
-
-# Edit .env dengan connection string Anda
-MONGODB_URI=mongodb://localhost:27017/gis_database
-# Atau untuk MongoDB Atlas:
-# MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/gis_database
-
-PORT=3000
-```
-
-#### 4. Jalankan Backend Server
-
-```bash
-# Development mode (dengan auto-restart)
-npm run dev
-
-# Production mode
-npm start
-```
-
-Server akan berjalan di: `http://localhost:3000`
-
-#### 5. Buka Frontend
-
-Buka browser dan akses: `http://localhost:3000`
-
-Atau buka `public/index.html` dengan Live Server dan pastikan API_CONFIG.BASE_URL di `config.js` mengarah ke backend Anda.
-
-## 🌐 Deploy ke GitHub Pages
-
-> GitHub Pages hanya dapat menjalankan file statis (HTML, CSS, JS). Backend Express + MongoDB TIDAK bisa berjalan di Pages. Anda punya 2 opsi: (1) Deploy versi Demo (LocalStorage), atau (2) Deploy frontend ke Pages dan backend ke platform lain (Railway/Render/Heroku) lalu ubah `API_CONFIG.BASE_URL`.
-
-### Opsi 1: Deploy Versi Demo (Tanpa Backend)
-Versi ini menggunakan `public/demo.html` dan LocalStorage.
-
-1. Pastikan file `public/demo.html` ada. (Tidak perlu mengganti `index.html` jika Anda tetap ingin versi full lokal.)
-2. Jalankan perintah deploy subtree (mengirim folder `public` saja ke branch `gh-pages`):
+1. **Setup Backend terlebih dahulu:**
    ```bash
-   npm run deploy:pages
-   ```
-3. Buka GitHub: Repository > Settings > Pages
-4. Source: Branch `gh-pages` (root) > Save
-5. Tunggu beberapa menit, situs akan tersedia di:
-   ```
-   https://<username>.github.io/<repository>/
+   git clone https://github.com/violasptntels/Backend-Geographic-Information-System.git
+   cd Backend-Geographic-Information-System
+   npm install
+   npm run dev
    ```
 
-Jika ingin memakai file `index.html` versi demo sebagai halaman utama di Pages, ubah (atau copy) konten `demo.html` menjadi `index.html` sebelum deploy.
+2. **Backend akan berjalan di:** `http://localhost:3001`
 
-### Opsi 2: Frontend di Pages + Backend di Platform Cloud
-
-1. Deploy frontend sama seperti Opsi 1.
-2. Deploy backend ke salah satu platform:
-   - **Railway**: Import repo, set variabel `MONGODB_URI`, jalankan.
-   - **Render**: Web Service > Build: `npm install` | Start: `npm start`.
-   - **Heroku**: Push repo dan tambahkan add-on MongoDB atau gunakan Atlas.
-3. Dapatkan URL backend (misal: `https://gis-backend-xyz.up.railway.app`).
-4. Edit `public/js/config.js` ubah `API_CONFIG.BASE_URL` menjadi URL backend Anda.
-5. Deploy ulang Pages jika perlu.
-
-### Opsi 3: GitHub Actions Otomatis (Direkomendasikan)
-Tambahkan workflow untuk otomatis deploy setiap push ke `main`.
-
-1. Buat file `.github/workflows/deploy-pages.yml` dengan isi:
-   ```yaml
-   name: Deploy GitHub Pages
-   on:
-     push:
-       branches: [main]
-   permissions:
-     contents: read
-     pages: write
-     id-token: write
-   concurrency:
-     group: pages
-     cancel-in-progress: true
-   jobs:
-     deploy:
-       runs-on: ubuntu-latest
-       steps:
-         - name: Checkout
-           uses: actions/checkout@v4
-         - name: Setup Pages
-           uses: actions/configure-pages@v4
-         - name: Upload artifact (public folder)
-           uses: actions/upload-pages-artifact@v3
-           with:
-             path: public
-         - name: Deploy to GitHub Pages
-           id: deployment
-           uses: actions/deploy-pages@v4
-   ```
-2. Commit & push workflow:
+3. **Setup Frontend:**
    ```bash
-   git add .github/workflows/deploy-pages.yml
-   git commit -m "Add GitHub Pages deploy workflow"
-   git push
+   npm install
+   npm run dev
    ```
-3. Aktifkan Pages: Settings > Pages > Source: GitHub Actions.
-4. Setiap push ke `main` akan otomatis deploy.
 
-### Catatan Penting
-- Jangan commit file `.env` (sudah di `.gitignore`).
-- Backend harus dihosting terpisah untuk mode full.
-- CORS: Pastikan backend mengizinkan origin Pages Anda.
-- Reverse geocoding tetap berjalan karena menggunakan OpenStreetMap API publik.
+4. **Buka di browser:** `http://localhost:3000`
 
-### Cek Setelah Deploy
-| Item | Versi Demo | Versi Full |
-|------|------------|------------|
-| CRUD Backend | ❌ | ✅ |
-| Simpan Data | LocalStorage | MongoDB |
-| Auto Alamat | ✅ | ✅ |
-| Peta & Marker | ✅ | ✅ |
-| Search & Filter | ✅ | ✅ |
+> **Catatan**: Pastikan Backend sudah running sebelum menggunakan mode full.
 
-Jika Anda melihat 404 di Pages untuk asset, pastikan semua path relatif (seperti `css/style.css`, bukan `/css/style.css`). Saat ini sudah menggunakan path relatif sehingga kompatibel.
+## 🌐 Deploy
 
-### Rollback / Perbaikan
-Jika ingin update situs:
+### Frontend di GitHub Pages
+
 ```bash
-# Perbarui kode, lalu:
-npm run deploy:pages
-```
-Jika branch `gh-pages` bermasalah:
-```bash
-git push origin --delete gh-pages
 npm run deploy:pages
 ```
 
-
-## 📝 API Endpoints
-
-### Locations
-
-| Method | Endpoint | Deskripsi |
-|--------|----------|-----------|
-| GET | `/api/locations` | Get semua lokasi |
-| GET | `/api/locations?category=restaurant` | Filter by category |
-| GET | `/api/locations?search=keyword` | Search lokasi |
-| GET | `/api/locations/:id` | Get lokasi by ID |
-| POST | `/api/locations` | Tambah lokasi baru |
-| PUT | `/api/locations/:id` | Update lokasi |
-| DELETE | `/api/locations/:id` | Hapus lokasi |
-
-### Contoh Request Body (POST/PUT)
-
-```json
-{
-  "name": "Restoran Sederhana",
-  "category": "restaurant",
-  "coordinates": {
-    "lat": -6.200000,
-    "lng": 106.816666
-  },
-  "address": "Jl. Contoh No. 123, Jakarta",
-  "description": "Restoran dengan masakan Indonesia",
-  "rating": 4.5,
-  "imageUrl": "https://example.com/image.jpg"
-}
+Aplikasi akan live di:
 ```
+https://violasptntels.github.io/Geographic-Information-System/
+```
+
+### Backend di Vercel
+
+Lihat dokumentasi di repository backend:
+https://github.com/violasptntels/Backend-Geographic-Information-System
+
+### Update API URL (Setelah Backend Deploy)
+
+Edit `public/js/config.js`:
+
+```javascript
+const API_CONFIG = {
+    BASE_URL: 'https://your-vercel-backend.vercel.app/api'
+};
+```
+
+Setelah itu, push ulang ke update frontend.
+
+
+## 📡 API Endpoints
+
+Semua endpoint API tercantum di repository Backend:
+https://github.com/violasptntels/Backend-Geographic-Information-System
+
+Backend Base URL (production): `https://your-vercel-backend.vercel.app/api`
 
 ## 🎨 Kategori Lokasi
 
@@ -266,13 +147,15 @@ npm run deploy:pages
 - **Font Awesome** - Icons
 - **Google Fonts** - Typography (Poppins)
 
-### Backend
+### Backend (Repository Terpisah)
 - **Node.js** - Runtime environment
 - **Express.js** - Web framework
 - **MongoDB** - Database NoSQL
 - **Mongoose** - ODM untuk MongoDB
 - **CORS** - Cross-origin resource sharing
 - **dotenv** - Environment variables
+
+Lihat: https://github.com/violasptntels/Backend-Geographic-Information-System
 
 ## 📱 Fitur UI/UX
 
