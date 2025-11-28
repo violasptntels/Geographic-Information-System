@@ -141,40 +141,21 @@ body {
 .sidebar {
     width: 350px;
     background: white;
-    box-shadow: var(--shadow);
+    box-shadow: var(--shadow-lg);
     overflow-y: auto;
     display: flex;
     flex-direction: column;
     transition: transform 0.3s ease;
     border-right: 1px solid var(--border-color);
-    position: absolute;
+    position: fixed;
     left: 0;
-    top: 0;
-    height: 100%;
-    z-index: 1200;
+    top: 65px;
+    height: calc(100vh - 65px);
+    z-index: 1100;
 }
 
 .sidebar.collapsed {
     transform: translateX(-100%);
-}
-
-/* Sidebar Overlay for Mobile */
-.main-container::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0);
-    z-index: 1100;
-    pointer-events: none;
-    transition: background 0.3s ease;
-}
-
-.main-container:not(.sidebar-hidden)::before {
-    background: rgba(0, 0, 0, 0.3);
-    pointer-events: auto;
 }
 
 .sidebar-toggle {
@@ -389,11 +370,12 @@ body {
 .map-controls {
     position: absolute;
     bottom: 2rem;
-    right: 2rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    z-index: 500;
+/* Map Section */
+.map-section {
+    flex: 1;
+    position: relative;
+    width: 100%;
+    overflow: hidden;
 }
 
 .control-btn {
@@ -419,7 +401,7 @@ body {
 .modal {
     display: none;
     position: fixed;
-    z-index: 2000;
+    z-index: 9999;
     left: 0;
     top: 0;
     width: 100%;
@@ -427,6 +409,7 @@ body {
     background: rgba(0, 0, 0, 0.5);
     animation: fadeIn 0.3s;
     transition: opacity 0.3s ease;
+    overflow: hidden;
 }
 
 .modal.show {
