@@ -30,9 +30,12 @@
                 <i class="fas fa-map-marked-alt"></i>
                 <h1>GIS Explorer</h1>
             </div>
-            <nav class="nav">
-                <button class="btn btn-primary" id="addLocationBtn">
-                    <i class="fas fa-plus"></i> Tambah Lokasi
+            <nav class="nav header-actions">
+                <button class="header-icon-btn" id="searchToggleBtn" title="Cari Lokasi">
+                    <i class="fas fa-search"></i>
+                </button>
+                <button class="header-icon-btn" id="addLocationBtn" title="Tambah Lokasi Baru">
+                    <i class="fas fa-plus"></i>
                 </button>
             </nav>
         </div>
@@ -48,13 +51,7 @@
         <!-- Sidebar -->
         <aside class="sidebar" id="sidebar">
             <div class="sidebar-header">
-                <h2><i class="fas fa-filter"></i> Filter & Pencarian</h2>
-            </div>
-            
-            <!-- Search Box -->
-            <div class="search-box">
-                <input type="text" id="searchInput" placeholder="Cari lokasi...">
-                <button id="searchBtn"><i class="fas fa-search"></i></button>
+                <h2><i class="fas fa-filter"></i> Filter & Kategori</h2>
             </div>
             
             <!-- Category Filter -->
@@ -220,6 +217,47 @@
             </div>
             <div id="detailContent">
                 <!-- Content will be injected by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Search Modal -->
+    <div id="searchModal" class="modal">
+        <div class="modal-content modal-search">
+            <div class="modal-header">
+                <h2><i class="fas fa-search"></i> Pencarian Lanjutan</h2>
+                <button class="close-btn">&times;</button>
+            </div>
+            <div class="search-modal-content">
+                <div class="form-group">
+                    <label for="searchInputModal">
+                        <i class="fas fa-search"></i> Cari Lokasi
+                    </label>
+                    <input type="text" id="searchInputModal" placeholder="Masukkan nama, deskripsi, atau alamat...">
+                </div>
+                
+                <div class="form-group">
+                    <label for="searchCategoryModal">
+                        <i class="fas fa-filter"></i> Filter Kategori
+                    </label>
+                    <select id="searchCategoryModal">
+                        <option value="all">Semua Kategori</option>
+                        <option value="restaurant">Restoran</option>
+                        <option value="hotel">Hotel</option>
+                        <option value="tourist_spot">Tempat Wisata</option>
+                        <option value="school">Sekolah</option>
+                        <option value="hospital">Rumah Sakit</option>
+                        <option value="shop">Toko</option>
+                        <option value="other">Lainnya</option>
+                    </select>
+                </div>
+                
+                <div class="search-modal-actions">
+                    <button type="button" class="btn btn-secondary cancel-btn">Batal</button>
+                    <button type="button" class="btn btn-primary" id="searchModalBtn">
+                        <i class="fas fa-search"></i> Cari
+                    </button>
+                </div>
             </div>
         </div>
     </div>

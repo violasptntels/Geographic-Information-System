@@ -414,6 +414,29 @@ function initEventListeners() {
         });
     }
     
+    // Search Toggle Button (Header)
+    document.getElementById('searchToggleBtn').addEventListener('click', () => {
+        openModal('searchModal');
+    });
+    
+    // Search Modal Button
+    document.getElementById('searchModalBtn').addEventListener('click', () => {
+        const search = document.getElementById('searchInputModal').value;
+        const category = document.getElementById('searchCategoryModal').value;
+        closeModal('searchModal');
+        loadLocations(category, search);
+    });
+    
+    // Search Modal Input - Enter Key
+    document.getElementById('searchInputModal').addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            const search = e.target.value;
+            const category = document.getElementById('searchCategoryModal').value;
+            closeModal('searchModal');
+            loadLocations(category, search);
+        }
+    });
+    
     // Add Location Button
     document.getElementById('addLocationBtn').addEventListener('click', () => {
         resetForm();
@@ -431,20 +454,7 @@ function initEventListeners() {
         });
     });
     
-    // Search
-    document.getElementById('searchBtn').addEventListener('click', () => {
-        const search = document.getElementById('searchInput').value;
-        loadLocations(currentCategory, search);
-    });
-    
-    document.getElementById('searchInput').addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') {
-            const search = e.target.value;
-            loadLocations(currentCategory, search);
-        }
-    });
-    
-    // Pick from Map Button
+    // Category Buttons
     document.getElementById('pickFromMapBtn').addEventListener('click', (e) => {
         e.preventDefault();
         e.stopPropagation();
