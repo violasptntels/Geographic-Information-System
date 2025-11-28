@@ -3,7 +3,7 @@ const API_CONFIG = {
     // Untuk development (local)
     BASE_URL: typeof window !== 'undefined' && window.location.hostname === 'localhost' 
         ? 'http://localhost:3001/api'
-        : 'https://backend-system-flag.vercel.app/api', // Ganti dengan URL backend Anda
+        : 'https://backend-geographic-information-syst.vercel.app/api', // Ganti dengan URL backend Anda
     
     ENDPOINTS: {
         LOCATIONS: '/locations',
