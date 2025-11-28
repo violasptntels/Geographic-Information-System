@@ -113,6 +113,7 @@ body {
     display: flex;
     flex-direction: column;
     transition: transform 0.3s ease;
+    border-right: 1px solid var(--border-color);
 }
 
 .sidebar.collapsed {
@@ -144,8 +145,9 @@ body {
 
 .sidebar-header {
     padding: 1.5rem;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
     color: white;
+    box-shadow: var(--shadow);
 }
 
 .sidebar-header h2 {
@@ -203,23 +205,32 @@ body {
 }
 
 .category-buttons {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     gap: 0.5rem;
 }
 
 .category-btn {
-    padding: 0.75rem 1rem;
+    padding: 0.75rem 0.875rem;
     border: 2px solid var(--border-color);
     background: white;
     border-radius: 0.5rem;
     cursor: pointer;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 0.75rem;
-    font-size: 0.95rem;
+    justify-content: center;
+    gap: 0.4rem;
+    font-size: 0.8rem;
     transition: all 0.3s;
-    text-align: left;
+    text-align: center;
+    min-width: 70px;
+    font-weight: 500;
+}
+
+.category-btn span {
+    display: block;
+    line-height: 1.2;
 }
 
 .category-btn:hover {
@@ -231,11 +242,9 @@ body {
     background: var(--primary-color);
     color: white;
     border-color: var(--primary-color);
-}
-
 .category-btn i {
-    font-size: 1.1rem;
-    width: 20px;
+    font-size: 1.4rem;
+}   width: 20px;
     text-align: center;
 }
 
@@ -259,17 +268,17 @@ body {
 
 .location-item {
     padding: 1rem;
-    background: var(--light-bg);
+    background: white;
     border: 2px solid var(--border-color);
     border-radius: 0.5rem;
     cursor: pointer;
     transition: all 0.3s;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
-
 .location-item:hover {
     border-color: var(--primary-color);
-    transform: translateX(5px);
-    box-shadow: var(--shadow);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.15);
+}   box-shadow: var(--shadow);
 }
 
 .location-item-header {
@@ -657,11 +666,11 @@ form {
     
     .category-buttons {
         display: grid;
-        grid-template-columns: repeat(2, 1fr);
+    .category-buttons {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
         gap: 0.5rem;
-    }
-    
-    .category-btn {
+    }category-btn {
         padding: 0.625rem 0.875rem;
         font-size: 0.875rem;
     }
@@ -740,9 +749,9 @@ form {
     
     .category-buttons {
         grid-template-columns: 1fr;
-    }
-    
-    .location-item {
+    .category-buttons {
+        grid-template-columns: repeat(2, 1fr);
+    }location-item {
         padding: 0.75rem;
     }
     
