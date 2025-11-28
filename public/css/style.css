@@ -29,7 +29,7 @@ body {
 .header {
     background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
     color: white;
-    padding: 1rem 0;
+    padding: 0.75rem 0;
     box-shadow: var(--shadow-lg);
     position: sticky;
     top: 0;
@@ -47,16 +47,16 @@ body {
 .logo {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
+    gap: 0.5rem;
 }
 
 .logo i {
-    font-size: 2rem;
+    font-size: 1.5rem;
     animation: pulse 2s infinite;
 }
 
 .logo h1 {
-    font-size: 1.75rem;
+    font-size: 1.4rem;
     font-weight: 700;
 }
 
@@ -68,13 +68,13 @@ body {
 }
 
 .header-icon-btn {
-    width: 45px;
-    height: 45px;
+    width: 40px;
+    height: 40px;
     background: rgba(255, 255, 255, 0.2);
     color: white;
     border: 2px solid rgba(255, 255, 255, 0.3);
     border-radius: 50%;
-    font-size: 1.25rem;
+    font-size: 1.1rem;
     cursor: pointer;
     transition: all 0.3s ease;
     display: flex;
@@ -133,7 +133,8 @@ body {
 /* Main Container */
 .main-container {
     display: flex;
-    height: calc(100vh - 80px);
+    height: calc(100vh - 65px);
+    position: relative;
 }
 
 /* Sidebar */
@@ -146,11 +147,34 @@ body {
     flex-direction: column;
     transition: transform 0.3s ease;
     border-right: 1px solid var(--border-color);
-    position: relative;
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    z-index: 1200;
 }
 
 .sidebar.collapsed {
     transform: translateX(-100%);
+}
+
+/* Sidebar Overlay for Mobile */
+.main-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0);
+    z-index: 1100;
+    pointer-events: none;
+    transition: background 0.3s ease;
+}
+
+.main-container:not(.sidebar-hidden)::before {
+    background: rgba(0, 0, 0, 0.3);
+    pointer-events: auto;
 }
 
 .sidebar-toggle {
@@ -346,11 +370,12 @@ body {
 
 .loading {
     text-align: center;
-    padding: 2rem;
-    color: var(--secondary-color);
-}
-
 /* Map Section */
+.map-section {
+    flex: 1;
+    position: relative;
+    width: 100%;
+}* Map Section */
 .map-section {
     flex: 1;
     position: relative;
@@ -650,11 +675,6 @@ form {
     .sidebar {
         width: 300px;
     }
-    
-    .location-list {
-        max-height: 300px;
-        overflow-y: auto;
-    }
 }
 
 /* Tablet Portrait */
@@ -682,23 +702,19 @@ form {
         height: auto;
     }
     
-    .sidebar-toggle {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-    
     .sidebar {
         width: 100%;
         height: auto;
         max-height: 50vh;
         overflow-y: auto;
-        position: relative;
+        position: fixed;
+        left: 0;
+        top: 80px;
+        z-index: 1200;
     }
     
     .sidebar.collapsed {
-        transform: none;
-        display: none;
+        transform: translateY(-100%);
     }
     
     .sidebar-header {
@@ -740,7 +756,7 @@ form {
     }
     
     .map-section {
-        height: 50vh;
+        height: 100vh;
         min-height: 400px;
     }
     

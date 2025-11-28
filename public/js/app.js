@@ -198,13 +198,11 @@ function displayLocations(locations) {
             map.setView([location.coordinates.lat, location.coordinates.lng], 16);
             marker.openPopup();
             
-            // Close sidebar on mobile after clicking location
-            if (window.innerWidth <= 768) {
-                const sidebar = document.getElementById('sidebar');
-                if (sidebar) {
-                    sidebar.classList.add('collapsed');
-                }
-            }
+            // Close sidebar after clicking location
+            const sidebar = document.getElementById('sidebar');
+            const mainContainer = document.querySelector('.main-container');
+            sidebar.classList.add('collapsed');
+            mainContainer.classList.add('sidebar-hidden');
         };
         
         listContainer.appendChild(listItem);
@@ -389,13 +387,27 @@ function initEventListeners() {
     // List Toggle Button (Header)
     document.getElementById('listToggleBtn').addEventListener('click', () => {
         const sidebar = document.getElementById('sidebar');
+        const mainContainer = document.querySelector('.main-container');
         sidebar.classList.toggle('collapsed');
+        mainContainer.classList.toggle('sidebar-hidden');
     });
     
     // Sidebar Close Button
     document.getElementById('sidebarCloseBtn').addEventListener('click', () => {
         const sidebar = document.getElementById('sidebar');
+        const mainContainer = document.querySelector('.main-container');
         sidebar.classList.add('collapsed');
+        mainContainer.classList.add('sidebar-hidden');
+    });
+    
+    // Close sidebar when clicking overlay (mobile)
+    const mainContainer = document.querySelector('.main-container');
+    mainContainer.addEventListener('click', (e) => {
+        if (e.target === mainContainer && !document.querySelector('.sidebar').classList.contains('collapsed')) {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.add('collapsed');
+            mainContainer.classList.add('sidebar-hidden');
+        }
     });
     
     // Search Toggle Button (Header)
