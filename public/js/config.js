@@ -1,10 +1,9 @@
 // API Configuration
 const API_CONFIG = {
     // Untuk development (local)
-    BASE_URL: 'http://localhost:3001/api',
-    
-    // Untuk production (ganti dengan URL backend Anda)
-    // BASE_URL: 'https://your-backend-url.com/api',
+    BASE_URL: typeof window !== 'undefined' && window.location.hostname === 'localhost' 
+        ? 'http://localhost:3001/api'
+        : '/api',
     
     ENDPOINTS: {
         LOCATIONS: '/locations',

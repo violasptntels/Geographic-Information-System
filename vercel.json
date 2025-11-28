@@ -1,0 +1,29 @@
+{
+  "version": 2,
+  "buildCommand": "npm install",
+  "public": true,
+  "env": {
+    "MONGODB_URI": "@mongodb_uri",
+    "PORT": "3001"
+  },
+  "builds": [
+    {
+      "src": "server/index.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "server/index.js"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "public/$1"
+    },
+    {
+      "src": "/",
+      "dest": "public/index.html"
+    }
+  ]
+}
